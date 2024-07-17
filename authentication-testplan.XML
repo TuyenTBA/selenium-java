@@ -1,0 +1,7 @@
+<suite name="Form Authentication">
+    <test name="login">
+        <classes>
+            <class name="herokuapp.FormAuthenticationapp"/>
+        </classes>
+    </test>
+</suite>
