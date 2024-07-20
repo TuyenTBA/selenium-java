@@ -4,6 +4,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
 
 import java.io.File;
@@ -90,6 +91,24 @@ public class Browser {
 
     public static void switchToParentFrame(){
         driver.switchTo().parentFrame();
+    }
+    public static void acceptAlert(){
+        driver.switchTo().alert().accept();
+    }
+    public static void dismissAlert(){
+        driver.switchTo().alert().dismiss();
+    }
+
+    public static void inputAlert (String input){
+        driver.switchTo().alert().sendKeys(input);
+        driver.switchTo().alert().accept();
+
+    }
+
+    public static void hover(By locator){
+        Actions mouse;
+        mouse = new Actions(driver);
+        mouse.moveToElement(driver.findElement(locator));
     }
 
 

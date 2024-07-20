@@ -3,7 +3,7 @@ package herokuapp;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import page.NestframePage;
 import support.Browser;
@@ -12,10 +12,10 @@ import support.Browser;
         NestframePage nestFramesTest;
         @BeforeClass
         void setup(){
-            Browser.launchBrowser("Chrome");
+            Browser.launchBrowser("chrome");
         }
 
-        @BeforeTest
+        @BeforeMethod
         void setupPage(){
             nestFramesTest = new NestframePage();
             nestFramesTest.open();
@@ -23,22 +23,14 @@ import support.Browser;
 
         @Test
         void verifyTextPresent (){
-            nestFramesTest.switchFrame("frame-top");
-            nestFramesTest.switchFrame("frame-left");
-            Assert.assertEquals(nestFramesTest.getString(),"LEFT");
-            nestFramesTest.switchParentFrame();
 
-            nestFramesTest.switchFrame("frame-middle");
-            Assert.assertEquals(nestFramesTest.getString(),"MIDDLE");
-            nestFramesTest.switchParentFrame();
+            Assert.assertEquals(nestFramesTest.getFrameLeftString(),"LEFT");
 
-            nestFramesTest.switchFrame("frame-right");
-            Assert.assertEquals(nestFramesTest.getString(),"RIGHT");
-            nestFramesTest.switchParentFrame();
+            Assert.assertEquals(nestFramesTest.getFrameMiddleString(),"MIDDLE");
 
-            nestFramesTest.switchParentFrame();
-            nestFramesTest.switchFrame("frame-bottom");
-            Assert.assertEquals(nestFramesTest.getString(),"BOTTOM");
+            Assert.assertEquals(nestFramesTest.getFrameRightString(),"RIGHT");
+
+            Assert.assertEquals(nestFramesTest.getFramebottomString(),"BOTTOM");
         }
 
         @AfterClass
